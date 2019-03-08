@@ -131,5 +131,21 @@ router.put('/:director_id', (req,res,next) => {
     }).catch((err) => {
       next({message: 'This director is not found!', code: 101 });
     });
-  });
+});
+
+// delete director 
+router.delete('/:director_id', (req, res, next) => {
+    const promise = Director.findByIdAndRemove(req.params.director_id);
+
+    promise.then((director) => {
+        if(!director){
+            next({message: 'This director is not found!', code: 100 });
+        }else{
+        res.json(director);
+        }
+    }).catch((err) => {
+        next({message: 'This director is not found!', code: 101 })
+    });
+});
+
 module.exports = router;
