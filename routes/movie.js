@@ -36,9 +36,9 @@ router.post('/', (req, res, next) => {
   const promise = movie.save();
 
   promise.then((data) => {
-    res.json(data);
+    res.send(data);
   }).catch((err) => {
-    res.json(err);
+    res.send(err.message);
   });
 });
 
