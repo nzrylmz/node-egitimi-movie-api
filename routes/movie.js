@@ -69,8 +69,7 @@ router.put('/:movie_id', (req,res,next) => {
     } else {
     res.json(movie);
   }
-  }).catch((err) => { // eğer id mongo db kurallarına uymuyorsa 
-    console.log(mongoose.Types.ObjectId.isValid(req.params.movie_id));
+  }).catch((err) => { // eğer id mongo db kurallarına uymuyorsa
     next({message: 'This movie is not found!', code: 99 });
   });
 });
@@ -84,7 +83,7 @@ router.delete('/:movie_id', (req,res,next) => {
       next({message: 'This movie is not found!', code: 98 });
     } else {
     res.json(movie);
-  }
+    }
   }).catch((err) => { // eğer id mongo db kurallarına uymuyorsa mongodbden default error olarak catch e düşer
     console.log(mongoose.Types.ObjectId.isValid(req.params.movie_id));
     next({message: 'This movie is not found!', code: 99 });
