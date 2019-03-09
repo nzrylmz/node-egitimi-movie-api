@@ -1,3 +1,3 @@
 module.exports = {
-    api_secret_key: 'gizli anahtar'
+    api_secret_key: 'çok gizli anahtar'
 };

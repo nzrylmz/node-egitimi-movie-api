@@ -30,35 +30,26 @@ router.post('/register', (req, res, next) => {
 });
 
 // authenticate
-router.post('/authenticate', (req, res) => {
+router.post('/authenticate', (req, res, next) => {
   const { username, password } = req.body;
 
-  User.findOne({username}, (err, user) => {
-    if(err)
-      throw err;
+  const promise = User.findOne({username});
+  promise.then((user) => {
     if(!user){
-      res.json({
-        status: false,
-        message: 'Authentication failed, user not found!'
-      });
+      next({message: 'User not found!', code: 102}); // error handle middleware ine next etme
     } else {
       bcrypt.compare(password, user.password).then((result) => {
         if(!result){
-          res.json({
-            status: false,
-            message: 'Authentication failed, wrong password!'
-          });
+          next({message: 'Wrong password!', code: 103});
         } else {
           const payload = { username };
-          const token = jwt.sign(payload, req.app.get('api_secret_key'), { expiresIn: 720 }) // expiresIn dk cinsinden 12 saat
-          res.json({
-            status: 1,
-            token
-          })
+          const token = jwt.sign(payload, req.app.get('api_secret_key'), {expiresIn: 720});
+          res.json({user, token});
         }
       });
     }
-      
+  }).catch((err) => {
+    res.json(err);
   });
 });
 
