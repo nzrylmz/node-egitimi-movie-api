@@ -1,5 +1,23 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Kullanıcı Girişi
+
+  form(action="/authenticate" method="POST")
+    label Kullanıcı Adı 
+      input(type="text" autocomplete="off" name="username")
+    label  Şifre 
+      input(type="password" name="password")
+    button(type="submit") Giriş
+  br
+  br
+  hr
+  br
+  h1 Yeni Kullanıcı
+
+  form(action="/register" method="POST")
+    label Kullanıcı Adı 
+      input(type="text" autocomplete="off" name="username")
+    label  Şifre 
+      input(type="password" name="password")
+    button(type="submit") Kayıt
