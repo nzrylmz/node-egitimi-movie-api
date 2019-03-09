@@ -5,7 +5,7 @@ const server = require('../../app');
 
 chai.use(chaiHttp);
 
-describe('Node Server', () => {
+describe('INDEX - test', () => {
     it('(GET /) returns homepage', ((done) => {
         chai.request(server).get('/').end((err,res) => {
             res.should.have.status(200);

@@ -108,11 +108,14 @@ router.get('/:director_id', (req, res) => {
                 bio: '$_id.bio',
                 movies: '$movies'
             }
+        },
+        {
+            $limit: 1
         }
     ]);
 
     promise.then((director) => {
-        res.json(director);
+        res.json(director[0]);
     }).catch((err) => {
         res.json(err);
     });

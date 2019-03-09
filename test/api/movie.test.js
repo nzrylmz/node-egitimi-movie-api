@@ -7,10 +7,9 @@ chai.use(chaiHttp);
 
 let token, movieId;
 
-describe('/api/movies tests', () => {
+describe('MOVIES - /api/movies tests', () => {
     before((done) => {
         chai.request(server).post('/authenticate').send({username: 'test', password: 'test123'}).end((err,res) => {
-            if(err) console.log('Test kullanıcısı bilgileri yanlış!');
             token = res.body.token;
             done();
         });

@@ -36,7 +36,7 @@ router.post('/authenticate', (req, res, next) => {
   const promise = User.findOne({username});
   promise.then((user) => {
     if(!user){
-      next({message: 'User not found!', code: 102}); // error handle middleware ine next etme
+      next({message: 'User not found!', code: 102}); // error handle middleware'e next etme
     } else {
       bcrypt.compare(password, user.password).then((result) => {
         if(!result){
