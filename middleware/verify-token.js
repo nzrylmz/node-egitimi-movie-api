@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = (req,res,next) => {
-    const token = req.headers('x-acces-token') || req.body.token || req.query.token;
+    const token = req.headers['x-acces-token'] || req.body.token || req.query.token;
 
     if(!token){
         res.json({message: 'No token provided!'});
     } else {
-        jwt.verify(token, req.app.get('api_secret_key').then((err, decoded) => {
+        jwt.verify(token, req.app.get('api_secret_key'), (err, decoded) => {
             if(err){
                 res.json({message: 'Authentication failed!'});
             } else {
@@ -14,7 +14,7 @@ module.exports = (req,res,next) => {
                 next();
             }
 
-        }));
+        });
     }
 };
 

@@ -6,7 +6,7 @@ const UserSchema = new Schema({
         type: String,
         required: [true, '{PATH} alanı zorunludur!'],
         unique: [true, '`{VALUE}` daha önce alınmış!'],
-        maxlength: [20, '{PATH} en fazla `{MAXLENGTH}´ karakter içerebilir!'],
+        maxlength: [25, '{PATH} en fazla `{MAXLENGTH}´ karakter içerebilir!'],
         minlength: [2, '{PATH} en az `{MINLENGTH}´ karakter içermelidir!']
     },
     password: {

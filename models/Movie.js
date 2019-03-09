@@ -29,7 +29,7 @@ const MovieSchema = new Schema({
     },
     imdb_score: {
         type: Number,
-        required: [true, '{PATH} alanı zorunludur!'],
+       // required: [true, '{PATH} alanı zorunludur!'],
         max: [10.0, '{PATH} alanı maksimum {MAX} olabilir!'],
         min: [0.1, '{PATH} alanı minimum {MİN} olabilir!']
     },
