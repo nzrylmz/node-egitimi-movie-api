@@ -14,15 +14,6 @@ describe('MOVIES - /api/movies tests', () => {
             done();
         });
     });
-    describe('GET /movies', () => {
-        it('it should GET all movies', (done) => {
-            chai.request(server).get('/api/movies').set('x-acces-token', token).end((err,res) => {
-                res.should.have.status(200);
-                res.body.should.be.a('array');
-                done();
-            });
-        });
-    });
     describe('POST /movies', () => {
         it('it should POST a movie', (done) => {
             const movie = {
@@ -44,6 +35,15 @@ describe('MOVIES - /api/movies tests', () => {
                 res.body.should.have.property('year').eql(movie.year);
                 res.body.should.have.property('imdb_score').eql(movie.imdb_score);
                 movieId = res.body._id;
+                done();
+            });
+        });
+    });
+    describe('GET /movies', () => {
+        it('it should GET all movies', (done) => {
+            chai.request(server).get('/api/movies').set('x-acces-token', token).end((err,res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('array');
                 done();
             });
         });

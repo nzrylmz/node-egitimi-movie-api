@@ -14,15 +14,6 @@ describe('DIRECTORS - /api/directors tests', () => {
             done();
         });
     });
-    describe('GET /directors', () => {
-        it('it should get all directors', (done) => {
-            chai.request(server).get('/api/directors').set('x-acces-token', token).end((err,res) => {
-                if(err) throw err;
-                res.should.have.status(200);
-                done();
-            });
-        });
-    });
     describe('POST /directors', () => {
         it('it should POST a director', (done) => {
             const director = {
@@ -39,6 +30,15 @@ describe('DIRECTORS - /api/directors tests', () => {
                 res.body.should.have.property('surname').eql(director.surname);
                 res.body.should.have.property('bio').eql(director.bio);
                 directorId = res.body._id;
+                done();
+            });
+        });
+    });
+    describe('GET /directors', () => {
+        it('it should get all directors', (done) => {
+            chai.request(server).get('/api/directors').set('x-acces-token', token).end((err,res) => {
+                if(err) throw err;
+                res.should.have.status(200);
                 done();
             });
         });

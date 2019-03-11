@@ -1,3 +1,5 @@
+[![Build status](https://api.travis-ci.org/nzrylmz/node-egitimi-movie-api.svg)](https://travis-ci.org/nzrylmz/node-egitimi-movie-api)
+
 # node-egitimi-movie-api
 
 # Movies
